@@ -2,7 +2,7 @@ import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default class HomeScreen extends Component {
+export default class CamScreen extends Component {
     static navigationOptions = {
         header: null,
     };

@@ -4,7 +4,7 @@ import SettingsScreen from './SettingsScreen';
 
 export default createStackNavigator(
   {
-    Home: HomeScreen,
+    Cam: CamScreen,
     Settings: SettingsScreen,
   },
 );
