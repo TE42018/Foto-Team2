@@ -1,6 +1,6 @@
 import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
 export default class CamScreen extends Component {
     static navigationOptions = {
@@ -9,12 +9,13 @@ export default class CamScreen extends Component {
     render() {
         return (
             <View style={styles.wrapper}>
-                <Text>This is the home screen</Text>
+                {/*<Text>This is the home screen</Text>
                 <TouchableOpacity style={styles.settingsButton} onPress={() => { this.props.navigation.navigate('Settings') }}>
                     <Text>
                         Settings
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
+                <StatusBar hidden={true}/>
                 <RNCamera
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
@@ -24,16 +25,10 @@ export default class CamScreen extends Component {
                 >
                     {({ camera, status }) => {
                         if (status !== 'READY') return <View />;
-                        return (
-                            <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
-                                    <Text style={{ fontSize: 14 }}> SNAP </Text>
-                                </TouchableOpacity>
-                            </View>
-                        );
+                            
+                        setInterval(() => {countdown()}, 1000)
                     }}
                 </RNCamera>
-
 
             </View>
         );
@@ -44,6 +39,10 @@ export default class CamScreen extends Component {
         //  eslint-disable-next-line
         console.log(data.uri);
     }
+}
+
+countdown = function(){
+
 }
 
 const styles = StyleSheet.create({

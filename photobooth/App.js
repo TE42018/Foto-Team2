@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './HomeScreen';
+import CamScreen from './CamScreen';
 import SettingsScreen from './SettingsScreen';
 
 export default createStackNavigator(
   {
-    Cam: CamScreen,
+    Camera: CamScreen,
     Settings: SettingsScreen,
   },
 );
