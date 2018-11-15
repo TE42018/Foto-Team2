@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Styles from 'Css';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default class SettingsScreen extends Component{
@@ -8,9 +7,15 @@ export default class SettingsScreen extends Component{
     };
     render() {
         return (
-            <View style={Styles.wrapper}>
+            <View style={styles.wrapper}>
                 <Text>This is the settings screen</Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+    },
+});

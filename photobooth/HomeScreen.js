@@ -1,6 +1,6 @@
+import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
-import Styles from 'Css';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class HomeScreen extends Component {
     static navigationOptions = {
@@ -8,13 +8,31 @@ export default class HomeScreen extends Component {
     };
     render() {
         return (
-            <View style={Styles.wrapper}>
+            <View style={styles.wrapper}>
                 <Text>This is the home screen</Text>
-                <TouchableHighlight style={styles.settingsButton} onPress={() => { this.props.navigation.navigate('Settings') }}>
+                <TouchableOpacity style={styles.settingsButton} onPress={() => { this.props.navigation.navigate('Settings') }}>
                     <Text>
                         Settings
                     </Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
+                <RNCamera
+                    style={styles.preview}
+                    type={RNCamera.Constants.Type.back}
+                    flashMode={RNCamera.Constants.FlashMode.on}
+                    permissionDialogTitle={'Permission to use camera'}
+                    permissionDialogMessage={'We need your permission to use your camera phone'}
+                >
+                    {({ camera, status }) => {
+                        if (status !== 'READY') return <PendingView />;
+                        return (
+                            <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+                                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
+                                    <Text style={{ fontSize: 14 }}> SNAP </Text>
+                                </TouchableOpacity>
+                            </View>
+                        );
+                    }}
+                </RNCamera>
             </View>
         );
     }
@@ -23,10 +41,5 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: "center"
     },
-    settingsButton: {
-        backgroundColor: 'red'
-    }
 });
