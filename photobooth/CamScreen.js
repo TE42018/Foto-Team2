@@ -1,6 +1,7 @@
 import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
+import CountdownCircle from 'react-native-countdown-circle'
 
 export default class CamScreen extends Component {
     static navigationOptions = {
@@ -29,6 +30,17 @@ export default class CamScreen extends Component {
                         setInterval(() => {countdown()}, 1000)
                     }}
                 </RNCamera>
+
+                <CountdownCircle
+                style={styles.timer}
+                    seconds={5}
+                    radius={30} 
+                    borderwith={8}
+                    color="#F5F5F5"
+                    bgColor="#FFFFFF"
+                    textStyle={{ fontSize: 20 }}
+                    onTimeElapsed={() => console.log('Elapsed!')}   
+                />
 
             </View>
         );
@@ -62,5 +74,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         alignSelf: 'center',
         margin: 20,
+    },
+    timer: {
+        dööööö,
     },
 });
