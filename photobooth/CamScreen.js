@@ -30,14 +30,6 @@ rendered.push(this.camera)
             rendered.push(this.welcomeScreen)
 
         return rendered;
-        return (
-            <View style={styles.wrapper}>
-                {this.rendered}
-                {/*this.camera}
-                {this.welcomeScreen*/}
-            </View>
-
-        );
     }
 
     takePicture = async function (camera) {
