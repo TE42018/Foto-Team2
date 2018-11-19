@@ -32,9 +32,9 @@ export default class CamScreen extends Component {
                 </RNCamera>
 
                 <CountdownCircle
-                style={styles.timer}
+                
                     seconds={5}
-                    radius={30} 
+                    radius={20} 
                     borderwith={8}
                     color="#F5F5F5"
                     bgColor="#FFFFFF"
@@ -75,7 +75,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
     },
-    timer: {
-        dööööö,
-    },
+    
 });
