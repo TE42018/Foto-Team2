@@ -7,10 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "@storybook/addon-ondevice-knobs": "^4.0.6",
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-camera": "^1.4.1",
-    "react-navigation": "^2.18.2"
+    "react-native-photo-upload": "^1.3.0",
+    "react-native-storybook-knobs": "^0.1.0",
+    "react-native-switch": "^1.5.0",
+    "react-native-switch-pro": "^1.0.2-beta",
+    "react-navigation": "^2.18.2",
+    "react-router-native": "^4.3.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -1,11 +1,13 @@
 import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, AppRegistry, Dimensions } from 'react-native';
 
 export default class HomeScreen extends Component {
     static navigationOptions = {
         header: null,
+        
     };
+
     render() {
         return (
             <View style={styles.wrapper}>
@@ -34,7 +36,6 @@ export default class HomeScreen extends Component {
                     }}
                 </RNCamera>
 
-
             </View>
         );
     }
@@ -45,6 +46,8 @@ export default class HomeScreen extends Component {
         console.log(data.uri);
     }
 }
+
+
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -64,4 +67,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
     },
+    settingsButton: {
+        zIndex: 10
+    }
 });
