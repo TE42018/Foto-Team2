@@ -33,12 +33,12 @@ export default class CamScreen extends Component {
 
                 <CountdownCircle
                 
-                    seconds={5}
-                    radius={20} 
+                    seconds={999}
+                    radius={60} 
                     borderwith={8}
                     color="#F5F5F5"
                     bgColor="#FFFFFF"
-                    textStyle={{ fontSize: 20 }}
+                    textStyle={{ fontSize: 60 }}
                     onTimeElapsed={() => console.log('Elapsed!')}   
                 />
 
