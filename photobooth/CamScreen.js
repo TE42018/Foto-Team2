@@ -2,6 +2,34 @@ import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import CountdownCircle from 'react-native-countdown-circle'
+import Camera from 'react-native-camera'
+
+
+let cam = {header: null}
+  
+const countdown = () =>
+
+    <CountdownCircle
+
+        seconds={5}
+        radius={60}
+        borderwith={8}
+        color="#F5F5F5"
+        bgColor="#FFFFFF"
+        textStyle={{ fontSize: 60 }}
+        onTimeElapsed={() => { takePicture() }}
+
+    />
+
+const takePicture = async function () {
+    //alert("hello")
+    const options = { quality: 0.5, base64: true };
+    const data = await cam.takePictureAsync(options);
+    //  eslint-disable-next-line
+    alert(data.uri); 
+}
+
+ 
 
 export default class CamScreen extends Component {
     static navigationOptions = {
@@ -16,7 +44,7 @@ export default class CamScreen extends Component {
                         Settings
                     </Text>
                 </TouchableOpacity>*/}
-                <StatusBar hidden={true}/>
+                <StatusBar hidden={true} />
                 <RNCamera
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
@@ -26,36 +54,22 @@ export default class CamScreen extends Component {
                 >
                     {({ camera, status }) => {
                         if (status !== 'READY') return <View />;
-                            
-                        setInterval(() => {countdown()}, 1000)
+                        //camera = camera_
+                        cam = camera
+                        //alert(JSON.stringify(camera)) 
                     }}
                 </RNCamera>
 
-                <CountdownCircle
-                
-                    seconds={999}
-                    radius={60} 
-                    borderwith={8}
-                    color="#F5F5F5"
-                    bgColor="#FFFFFF"
-                    textStyle={{ fontSize: 60 }}
-                    onTimeElapsed={() => console.log('Elapsed!')}   
-                />
+                {countdown()}
 
             </View>
         );
     }
-    takePicture = async function (camera) {
-        const options = { quality: 0.5, base64: true };
-        const data = await camera.takePictureAsync(options);
-        //  eslint-disable-next-line
-        console.log(data.uri);
-    }
-}
 
-countdown = function(){
 
 }
+
+
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -75,5 +89,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
     },
-    
+
 });
