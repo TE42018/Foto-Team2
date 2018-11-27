@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image, AppRegistry, ImageBackground } from 'react-native';
-import Video from 'react-native-video';
+import { View, Text, StyleSheet, Button, Image, AppRegistry, ImageBackground, label } from 'react-native';
+import SwitchSelector from 'react-native-switch-selector';
 import Icon from 'react-native-ionicons'
 import PhotoUpload from 'react-native-photo-upload'
 
@@ -11,11 +11,20 @@ export default class StartSettingScreen extends Component{
     render() {
         return (
             <View style={styles.container}>
-                <ImageBackground source={{uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1'}} style={styles.backgroundImage} >
+
+            <ImageBackground source={{uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1'}} style={styles.backgroundImage} >
                 <View style={{flex: 1, flexDirection: "row"}}>       
                     <View style={{width: "50%", height: "100%", flex: 1}}>
                         <Text style={{textAlign: 'left', fontSize: 40, color: "white", fontWeight: "bold", marginLeft: "8%", marginTop: "8%"}}>START SCREEN</Text>
-                        <Text style={{marginLeft: "8%", marginBottom: "10%", marginTop: "20%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Camera</Text>
+                        <View style={{width: "50%", flexDirection: "row", alignItems: "center", padding: 30, paddingTop: 68}}>
+                            <View style={{paddingRight: "15%"}}>
+                                <Text style={{fontSize: 20, color: 'rgb(229, 229, 229)'}}>Camera</Text>
+                            </View>
+                            <View style={{width: 150}}>
+                                <SwitchSelector fontSize={null} options={options} initial={0} onPress={value => console.log('all onPress with value: ${value}')} />
+                            </View>
+                        </View>
+                        
                         <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Countdown seconds</Text>
                         <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>start delay seconds</Text>                      
                         <Text style={{marginLeft: "8%", fontSize: 20, color: 'rgb(229, 229, 229)', marginTop: "4%"}}><Icon ios="checkmark-circle" android="checkmark-circle" style={{color: "#fff", fontSize: 40}}/>  Show Get Ready Prompt</Text>
@@ -36,8 +45,7 @@ export default class StartSettingScreen extends Component{
                                     style={{
                                     paddingVertical: 30,
                                     width: 150,
-                                    height: 150,
-                                    borderRadius: 75
+                                    height: 200,
                                     }}
                                     resizeMode='cover'
                                     source={{
@@ -48,7 +56,25 @@ export default class StartSettingScreen extends Component{
                         </View>
                         <View>
                             <Text style={{marginLeft: "30%", marginBottom: "5%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Landscape </Text>
-                            <Image style={{width: 100, height: 100, marginLeft: "30%"}} source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
+                            <PhotoUpload
+                                onPhotoSelect={avatar => {
+                                    if (avatar) {
+                                    console.log('Image base64 string: ', avatar)
+                                    }
+                                }}
+                                >
+                                <Image
+                                    style={{
+                                    paddingVertical: 30,
+                                    width: 200,
+                                    height: 150,
+                                    }}
+                                    resizeMode='cover'
+                                    source={{
+                                    uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                                    }}
+                                />
+                            </PhotoUpload>
                         </View>
                         </View>
                     </View>
@@ -68,3 +94,8 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     }
 });
+
+const options = [
+    { label: 'front', value: '1' },
+    { label: 'back', value: '1.5' }
+];
