@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Image, AppRegistry, ImageBackground } from 'react-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-ionicons'
+import PhotoUpload from 'react-native-photo-upload'
 
 export default class StartSettingScreen extends Component{
     static navigationOptions = {
@@ -24,7 +25,26 @@ export default class StartSettingScreen extends Component{
                         <View style={{flexDirection: "row", flex: 1}}>                         
                         <View>
                             <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Portrait </Text>
-                            <Image style={{width: 100, height: 100}} source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
+                            <PhotoUpload
+                                onPhotoSelect={avatar => {
+                                    if (avatar) {
+                                    console.log('Image base64 string: ', avatar)
+                                    }
+                                }}
+                                >
+                                <Image
+                                    style={{
+                                    paddingVertical: 30,
+                                    width: 150,
+                                    height: 150,
+                                    borderRadius: 75
+                                    }}
+                                    resizeMode='cover'
+                                    source={{
+                                    uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                                    }}
+                                />
+                            </PhotoUpload>
                         </View>
                         <View>
                             <Text style={{marginLeft: "30%", marginBottom: "5%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Landscape </Text>
