@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image, AppRegistry } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, AppRegistry, ImageBackground } from 'react-native';
+import Video from 'react-native-video';
+import Icon from 'react-native-ionicons'
 
 export default class StartSettingScreen extends Component{
     static navigationOptions = {
@@ -8,26 +10,30 @@ export default class StartSettingScreen extends Component{
     render() {
         return (
             <View style={styles.container}>
-            <Text style={{textAlign: 'center', fontSize: 40, backgroundColor: "green"}}>START SCREEN</Text>
-                <View style={{flex: 1, backgroundColor: "green", flexDirection: "row"}}>                 
-                    <View style={{width: "50%", height: "100%", borderStyle:"solid", borderColor: "black", borderWidth: 1, marginLeft: "1%", borderLeftWidth: 0, borderTopWidth: 0, borderBottomWidth: 0, flex: 1}}>
-                        <Text style={{marginLeft: "8%", marginBottom: "10%", marginTop: "20%", fontSize: 20}}>Camera</Text>
-                        <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20}}>Countdown seconds</Text>
-                        <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20}}>start delay seconds</Text>
-                        <Text style={{marginLeft: "8%", fontSize: 20}}>Show Get Ready Prompt</Text>
+                <ImageBackground source={{uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1'}} style={styles.backgroundImage} >
+                <View style={{flex: 1, flexDirection: "row"}}>       
+                    <View style={{width: "50%", height: "100%", flex: 1}}>
+                        <Text style={{textAlign: 'left', fontSize: 40, color: "white", fontWeight: "bold", marginLeft: "8%", marginTop: "8%"}}>START SCREEN</Text>
+                        <Text style={{marginLeft: "8%", marginBottom: "10%", marginTop: "20%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Camera</Text>
+                        <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Countdown seconds</Text>
+                        <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>start delay seconds</Text>                      
+                        <Text style={{marginLeft: "8%", fontSize: 20, color: 'rgb(229, 229, 229)', marginTop: "4%"}}><Icon ios="checkmark-circle" android="checkmark-circle" style={{color: "#fff", fontSize: 40}}/>  Show Get Ready Prompt</Text>
                     </View>
                     <View style={{flex: 1, width: "50%", height: "50%"}}>
-                        <Text style={{marginTop: "20%", marginLeft: "8%", marginBottom: "10%", fontSize: 30}}>Background Image</Text>                      
+                        <Text style={{marginTop: "38%", marginLeft: "8%", marginBottom: "10%", fontSize: 30, fontWeight: "bold", color: "white"}}>Background Image</Text>                      
                         <View style={{flexDirection: "row", flex: 1}}>                         
                         <View>
-                            <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20}}>Portrait </Text>
+                            <Text style={{marginLeft: "8%", marginBottom: "10%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Portrait </Text>
                             <Image style={{width: 100, height: 100}} source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
                         </View>
-                            <Text style={{marginLeft: "40%", marginBottom: "10%", fontSize: 20}}>Landscape </Text>
+                        <View>
+                            <Text style={{marginLeft: "30%", marginBottom: "5%", fontSize: 20, color: 'rgb(229, 229, 229)'}}>Landscape </Text>
+                            <Image style={{width: 100, height: 100, marginLeft: "30%"}} source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
+                        </View>
                         </View>
                     </View>
                 </View>
-
+                </ImageBackground>
             </View>
         );
     }
@@ -37,4 +43,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover'
+    }
 });

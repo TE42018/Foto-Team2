@@ -1,6 +1,7 @@
 import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native';
+import CountdownCircle from 'react-native-countdown-circle'
 
 export default class CamScreen extends Component {
     constructor(props) {
