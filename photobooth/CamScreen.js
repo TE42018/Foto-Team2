@@ -5,36 +5,49 @@ import CountdownCircle from 'react-native-countdown-circle'
 import Camera from 'react-native-camera'
 
 
-let cam = {header: null}
-  
-const countdown = () =>
+let cam = { header: null }
 
-    <CountdownCircle
-
-        seconds={5}
-        radius={60}
-        borderwith={8}
-        color="#F5F5F5"
-        bgColor="#FFFFFF"
-        textStyle={{ fontSize: 60 }}
-        onTimeElapsed={() => { takePicture() }}
-
-    />
-
-const takePicture = async function () {
-    //alert("hello")
-    const options = { quality: 0.5, base64: true };
-    const data = await cam.takePictureAsync(options);
-    //  eslint-disable-next-line
-    alert(data.uri); 
-}
-
- 
+console.disableYellowBox = true
 
 export default class CamScreen extends Component {
     static navigationOptions = {
         header: null,
     };
+
+    countdown = () => {
+        //alert(this.state.seconds)   
+        if (this.state.seconds == 0) {
+            this.setState({ seconds: this.state.maxSeconds })
+            if (this.state.imageCount > 0)
+                this.takePicture()
+        }
+        this.setState({ seconds: this.state.seconds - 1 })
+    }
+
+    takePicture = async function () {
+        if (cam) {
+            const options = { quality: 0.5, base64: true };
+            const data = await cam.takePictureAsync(options)
+            this.state.images.push(data.uri)
+            this.setState({ imageCount: this.state.imageCount - 1 })
+            //alert(this.state.imageCount)
+
+        }
+    }
+
+    state = {
+        timer: this.countdown,
+        maxSeconds: 3,
+        seconds: 3,
+        imageCount: 4,
+        images: []
+    }
+
+
+    componentDidMount() {
+        setInterval(this.countdown, 1000)
+        //alert(countdown())
+    }
     render() {
         return (
             <View style={styles.wrapper}>
@@ -54,22 +67,27 @@ export default class CamScreen extends Component {
                 >
                     {({ camera, status }) => {
                         if (status !== 'READY') return <View />;
-                        //camera = camera_
                         cam = camera
-                        //alert(JSON.stringify(camera)) 
                     }}
+
+                    <View style={styles.counter}>
+
+                        <Text style={styles.textCounter}>{this.state.seconds}</Text>
+
+                    </View>
+
                 </RNCamera>
 
-                {countdown()}
+
+
+
+
+
 
             </View>
         );
     }
-
-
 }
-
-
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -89,5 +107,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
     },
-
+    counter: {
+        paddingBottom: 40,
+        alignItems: 'center',
+        opacity: 0.8, 
+    },
+    textCounter: {
+        fontSize: 100,
+        color: 'white',
+    },
 });
