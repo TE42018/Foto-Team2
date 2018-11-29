@@ -4,33 +4,39 @@ import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'reac
 import CountdownCircle from 'react-native-countdown-circle'
 import Camera from 'react-native-camera'
 
+function renderIf(condition, content) {
+    if (condition) {
+        return content;
+    } else {
+        return null;
+    }
+}
 
-let cam = { header: null }
-
+let cam;
 console.disableYellowBox = true
 
 export default class CamScreen extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            showWelcomeScreen: true,
-        }
-        this.camera = <RNCamera style={styles.preview} type={RNCamera.Constants.Type.back} flashMode={RNCamera.Constants.FlashMode.on} permissionDialogTitle={'Permission to use camera'} permissionDialogMessage={'We need your permission to use your camera phone'} />
-        this.welcomeScreen = <View style={styles.overlayContainer}><Image style={styles.overlayImage} source={require('./resources/startscreen.jpg')} /><TouchableOpacity onPress={this.toggleWelcomeScreen} style={styles.pressableArea}></TouchableOpacity></View>
+
+
+
     }
     static navigationOptions = {
         header: null,
     };
 
     countdown = () => {
-        //alert(this.state.seconds)   
-        if (this.state.seconds == 0) {
-            this.setState({ seconds: this.state.maxSeconds })
-            if (this.state.imageCount > 0)
-                this.takePicture()
+        //alert(this.state.seconds)
+        if (!this.state.showWelcomeScreen) {
+            if (this.state.seconds == 0) {
+                this.setState({ seconds: this.state.maxSeconds })
+                if (this.state.imageCount > 0)
+                    this.takePicture()
+            }
+            this.setState({ seconds: this.state.seconds - 1 })
         }
-        this.setState({ seconds: this.state.seconds - 1 })
     }
 
     takePicture = async function () {
@@ -45,6 +51,7 @@ export default class CamScreen extends Component {
     }
 
     state = {
+        showWelcomeScreen: true,
         timer: this.countdown,
         maxSeconds: 3,
         seconds: 3,
@@ -53,23 +60,20 @@ export default class CamScreen extends Component {
     }
 
 
+
+
     componentDidMount() {
         setInterval(this.countdown, 1000)
         //alert(countdown())
     }
 
     toggleWelcomeScreen = () => {
-        this.setState({showWelcomeScreen: !this.state.showWelcomeScreen})
+        this.setState({ showWelcomeScreen: !this.state.showWelcomeScreen });
     }
 
     render() {
         return (
-                {/*<Text>This is the home screen</Text>
-                <TouchableOpacity style={styles.settingsButton} onPress={() => { this.props.navigation.navigate('Settings') }}>
-                    <Text>
-                        Settings
-                    </Text>
-                </TouchableOpacity>*/}
+            <View style={styles.wrapper}>
                 <StatusBar hidden={true} />
                 <RNCamera
                     style={styles.preview}
@@ -79,30 +83,46 @@ export default class CamScreen extends Component {
                     permissionDialogMessage={'We need your permission to use your camera phone'}
                 >
                     {({ camera, status }) => {
+                        
                         if (status !== 'READY') return <View />;
+
                         cam = camera
                     }}
 
-                    <View style={styles.counter}>
+                    {/* {renderIf(this.state.showWelcomeScreen,
+                        <View style={styles.overlayContainer}>
+                            <Image style={styles.overlayImage} source={require('./resources/startscreen.jpg')} />
+                            <TouchableOpacity onPress={this.toggleWelcomeScreen} style={styles.pressableArea}>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                    {renderIf(!this.state.showWelcomeScreen,
+                         <View style={styles.counter}>
+                         <Text style={styles.textCounter}>{this.state.seconds}</Text>
+                     </View>
+                    )} */}
 
-                        <Text style={styles.textCounter}>{this.state.seconds}</Text>
-
-                    </View>
 
                 </RNCamera>
-            <View style={styles.wrapper}>
-        let rendered = [];
-        
-rendered.push(<StatusBar hidden={true} />)
-rendered.push(this.camera)
 
+                {renderIf(this.state.showWelcomeScreen,
+                    <View style={styles.overlayContainer}>
+                        <Image style={styles.overlayImage} source={require('./resources/startscreen.jpg')} />
+                        <TouchableOpacity onPress={this.toggleWelcomeScreen} style={styles.pressableArea}>
+                        </TouchableOpacity>
+                    </View>
+                )}
+                {renderIf(!this.state.showWelcomeScreen,
+                    <View style={styles.counter}>
+                        <Text style={styles.counterText}>{this.state.seconds}</Text>
+                    </View>
+                )}
 
             </View>
-        );
-        if (this.state.showWelcomeScreen) 
-            rendered.push(this.welcomeScreen)
 
-        return rendered;
+        );
+
+
     }
 }
 
@@ -112,7 +132,11 @@ const styles = StyleSheet.create({
     },
     preview: {
         zIndex: -1,
-        flex: 1,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -126,11 +150,14 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     counter: {
-        paddingBottom: 40,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
         alignItems: 'center',
-        opacity: 0.8, 
+        width: '100%',
+        opacity: 0.8,
     },
-    textCounter: {
+    counterText: {
         fontSize: 100,
         color: 'white',
     },
@@ -146,12 +173,13 @@ const styles = StyleSheet.create({
         width: 370,
         height: 370,
         backgroundColor: 'rgba(0, 0, 0, 0)',
+        //backgroundColor: 'rgba(0, 0, 0, 1)',
         bottom: 166,
         borderRadius: 1000,
         opacity: 1,
     },
     overlayContainer: {
-        flex: 1,
+        
         alignItems: "center",
         backgroundColor: 'rgba(0, 0, 0, 0)',
         width: '100%', height: '100%',
