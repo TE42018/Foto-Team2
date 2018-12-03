@@ -6,7 +6,7 @@ import EndScreen from './EndScreen';
 
 export default createStackNavigator(
   {
-    Start: StartSettingScreen,
+    Start: neger,
     Camera: CamScreen,
     Settings: SettingsScreen,
     End: EndScreen,
