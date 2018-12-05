@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image, AppRegistry, ImageBackground, Picker, Platform, Alert} from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground, Picker} from 'react-native';
 import SwitchSelector from 'react-native-switch-selector';
-import Icon from 'react-native-ionicons'
 import PhotoUpload from 'react-native-photo-upload'
+import { Icon, Container, Header, Left} from 'native-base'
+import { blue } from 'ansi-colors';
+
+const RaisedButton = props => <Button raised {...props} />;
 
 export default class StartSettingScreen extends Component{
     static navigationOptions = {
@@ -11,15 +14,21 @@ export default class StartSettingScreen extends Component{
     constructor(){
         super();
         this.state={
-          PickerSelectedVal : ''
+          PickerSelectedVal : '',
+          PickerSelectedVal2 : ''
         }
       }
-    getSelectedPickerValue=()=>{
-        Alert.alert("Selected country is : " +this.state.PickerSelectedVal);
-      }
+      
     render() {
         return (
             <View style={styles.container}>
+            <Container>
+            <Header>
+                <Left style={{marginLeft: "-38%"}}>
+                    <Icon name="ios-menu" onPress={() => this.props.navigation.openDrawer()}/>
+                    
+                </Left>
+            </Header>
             <ImageBackground source={{uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1'}} style={styles.backgroundImage} >
                 <View style={{flex: 1, flexDirection: "row"}}>       
                     <View style={{width: "50%", height: "100%", flex: 1}}>
@@ -29,7 +38,7 @@ export default class StartSettingScreen extends Component{
                                 <Text style={{fontSize: 20, color: 'rgb(229, 229, 229)'}}>Camera</Text>
                             </View>
                             <View style={{width: 200}}>
-                                <SwitchSelector fontSize={null} options={options} initial={0} onPress={value => console.log('all onPress with value: ${value}')} />
+                                <SwitchSelector buttonColor={'grey'} fontSize={null} options={options} initial={0} onPress={value => console.log('all onPress with value: ${value}')}  />
                             </View>
                         </View>               
 
@@ -61,8 +70,8 @@ export default class StartSettingScreen extends Component{
                                 <Picker
                                     style={{color: "#fff"}}
                                     mode="dropdown"
-                                    selectedValue={this.state.PickerSelectedVal}
-                                    onValueChange={(itemValue, itemIndex) => this.setState({PickerSelectedVal: itemValue})} >
+                                    selectedValue={this.state.PickerSelectedVal2}
+                                    onValueChange={(itemValue, itemIndex) => this.setState({PickerSelectedVal2: itemValue})} >
                                     <Picker.Item label="1 seconds" value="1 seconds" />
                                     <Picker.Item label="2 seconds" value="2 seconds" />
                                     <Picker.Item label="3 seconds" value="3 seconds" />
@@ -126,10 +135,12 @@ export default class StartSettingScreen extends Component{
                     </View>
                 </View>
                 </ImageBackground>
+                </Container>
             </View>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -138,7 +149,16 @@ const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
         resizeMode: 'cover'
-    }
+    },
+    drawerHeader: {
+        height: 200,
+        backgroundColor: 'white'
+    },
+    drawerImage: {
+        height:150,
+        width: 150,
+        borderRadius: 75
+      }
 });
 
 const options = [

@@ -1,14 +1,10 @@
-import { createStackNavigator } from 'react-navigation';
-import CamScreen from './CamScreen';
-import StartSettingScreen from './feature-start-setting/StartSettingScreen';
-import SettingsScreen from './SettingsScreen';
-import EndScreen from './EndScreen';
+import { DrawerNavigator, DrawerItems, screenMapping } from 'react-navigation';
 
-export default createStackNavigator(
-  {
-    Start: StartSettingScreen,
-    Camera: CamScreen,
-    Settings: SettingsScreen,
-    End: EndScreen,
-  },
-);
+import StartSettingScreen from './feature-start-setting/StartSettingScreen';
+
+const App = DrawerNavigator({
+  Settings: { screen: StartSettingScreen}
+ 
+});
+
+export default App;
