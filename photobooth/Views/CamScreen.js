@@ -1,8 +1,8 @@
 import { RNCamera } from 'react-native-camera';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, Image } from 'react-native';
-import CountdownCircle from 'react-native-countdown-circle'
-import Camera from 'react-native-camera'
+import TimerComponent from '../Components/TimerComponent'
+
 
 function renderIf(condition, content) {
     if (condition) {
@@ -13,31 +13,15 @@ function renderIf(condition, content) {
 }
 
 let cam;
-console.disableYellowBox = true
 
 export default class CamScreen extends Component {
     constructor(props) {
         super(props)
-
-
-
-
     }
+
     static navigationOptions = {
         header: null,
     };
-
-    countdown = () => {
-        //alert(this.state.seconds)
-        if (!this.state.showWelcomeScreen) {
-            if (this.state.seconds == 0) {
-                this.setState({ seconds: this.state.maxSeconds })
-                if (this.state.imageCount > 0)
-                    this.takePicture()
-            }
-            this.setState({ seconds: this.state.seconds - 1 })
-        }
-    }
 
     takePicture = async function () {
         if (cam) {
@@ -45,27 +29,17 @@ export default class CamScreen extends Component {
             const data = await cam.takePictureAsync(options)
             this.state.images.push(data.uri)
             this.setState({ imageCount: this.state.imageCount - 1 })
-            //alert(this.state.imageCount)
-
         }
     }
 
     state = {
         showWelcomeScreen: true,
-        timer: this.countdown,
         maxSeconds: 3,
         seconds: 3,
         imageCount: 4,
         images: []
     }
 
-
-
-
-    componentDidMount() {
-        setInterval(this.countdown, 1000)
-        //alert(countdown())
-    }
 
     toggleWelcomeScreen = () => {
         this.setState({ showWelcomeScreen: !this.state.showWelcomeScreen });
@@ -92,16 +66,11 @@ export default class CamScreen extends Component {
                     </View>
                 )}
                 {renderIf(!this.state.showWelcomeScreen,
-                    <View style={styles.counter}>
-                        <Text style={styles.counterText}>{this.state.seconds}</Text>
-                    </View>
+                // seconds and repetition values sould not be hardcoded
+                    <TimerComponent seconds={3} repetitions={4} active={!this.state.showWelcomeScreen} onFinished={() => {this.takePicture()}}></TimerComponent>
                 )}
-
             </View>
-
         );
-
-
     }
 }
 
@@ -127,18 +96,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         alignSelf: 'center',
         margin: 20,
-    },
-    counter: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        alignItems: 'center',
-        width: '100%',
-        opacity: 0.8,
-    },
-    counterText: {
-        fontSize: 100,
-        color: 'white',
     },
     background: {
         zIndex: 1,
