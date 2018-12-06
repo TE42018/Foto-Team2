@@ -82,27 +82,6 @@ export default class CamScreen extends Component {
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
                 >
-                    {({ camera, status }) => {
-                        
-                        if (status !== 'READY') return <View />;
-
-                        cam = camera
-                    }}
-
-                    {/* {renderIf(this.state.showWelcomeScreen,
-                        <View style={styles.overlayContainer}>
-                            <Image style={styles.overlayImage} source={require('./resources/startscreen.jpg')} />
-                            <TouchableOpacity onPress={this.toggleWelcomeScreen} style={styles.pressableArea}>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    {renderIf(!this.state.showWelcomeScreen,
-                         <View style={styles.counter}>
-                         <Text style={styles.textCounter}>{this.state.seconds}</Text>
-                     </View>
-                    )} */}
-
-
                 </RNCamera>
 
                 {renderIf(this.state.showWelcomeScreen,
