@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation';
-import CamScreen from './CamScreen';
-import StartSettingScreen from './feature-start-setting/StartSettingScreen';
-import SettingsScreen from './SettingsScreen';
-import EndScreen from './EndScreen';
+import CamScreen from './Views/CamScreen';
+import StartSettingScreen from './Views/StartSettingScreen';
+import SettingsScreen from './Views/SettingsScreen';
+import EndScreen from './Views/EndScreen';
 
 export default createStackNavigator(
   {

@@ -107,7 +107,7 @@ export default class CamScreen extends Component {
 
                 {renderIf(this.state.showWelcomeScreen,
                     <View style={styles.overlayContainer}>
-                        <Image style={styles.overlayImage} source={require('./resources/startscreen.jpg')} />
+                        <Image style={styles.overlayImage} source={require('../Assets/Images/startscreen.jpg')} />
                         <TouchableOpacity onPress={this.toggleWelcomeScreen} style={styles.pressableArea}>
                         </TouchableOpacity>
                     </View>
