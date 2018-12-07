@@ -27,8 +27,8 @@ export default class CamScreen extends Component {
         if (cam) {
             const options = { quality: 0.5, base64: true };
             const data = await cam.takePictureAsync(options)
-            this.state.images.push(data.uri)
-            this.setState({ imageCount: this.state.imageCount - 1 })
+            this.state.images.push(data.base64)
+            this.setState({ imageCount: this.state.imageCount - 1 }) 
         }
     }
 
@@ -50,6 +50,7 @@ export default class CamScreen extends Component {
             <View style={styles.wrapper}>
                 <StatusBar hidden={true} />
                 <RNCamera
+                    ref={ref => cam = ref}
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.on}
