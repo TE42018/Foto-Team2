@@ -15,28 +15,15 @@ export default class EndScreen extends Component {
     };
 
     render() {
+        const { navigation } = this.props;
+        const images = navigation.getParam("images", null)
+        alert(images.length)
+
         return (
             <View style={styles.wrapper}>
-                <View style={styles.imageCard}>
-                    <View style={{flex: 1, flexDirection: "row"}}>
-                        <View style={styles.imageContainer}><View style={styles.image}><Text>Bild</Text></View></View>
-                        <View style={styles.imageContainer}><View style={styles.image}><Text>Bild</Text></View></View>
-                    </View>
-                    <View style={{flex: 1, flexDirection: "row"}}>
-                        <View style={styles.imageContainer}><View style={styles.image}><Text>Bild</Text></View></View>
-                        <View style={styles.imageContainer}><View style={styles.image}><Text>Bild</Text></View></View>
-                    </View>
-                </View>
+                
             </View>
         );
-    }
-
-    takePicture = async function (camera) {
-        const options = { quality: 0.5, base64: true };
-        const data = await camera.takePictureAsync(options);
-        //  eslint-disable-next-line
-        console.log(data.uri);
-
     }
 }
 

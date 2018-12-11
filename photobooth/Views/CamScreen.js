@@ -29,7 +29,13 @@ export default class CamScreen extends Component {
             const data = await cam.takePictureAsync(options)
             this.state.images.push(data.base64)
             this.setState({ imageCount: this.state.imageCount - 1 }) 
+            //alert("Took picture")
         }
+    }
+
+    onFinished = () => {
+        this.props.navigation.navigate('End', {images: this.state.images})
+        this.toggleWelcomeScreen()
     }
 
     state = {
@@ -52,8 +58,8 @@ export default class CamScreen extends Component {
                 <RNCamera
                     ref={ref => cam = ref}
                     style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.on}
+                    type={RNCamera.Constants.Type.front}
+                    flashMode={RNCamera.Constants.FlashMode.auto}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
                 >
@@ -68,7 +74,7 @@ export default class CamScreen extends Component {
                 )}
                 {renderIf(!this.state.showWelcomeScreen,
                 // seconds and repetition values sould not be hardcoded
-                    <TimerComponent seconds={3} repetitions={4} active={!this.state.showWelcomeScreen} onFinished={() => {this.takePicture()}}></TimerComponent>
+                    <TimerComponent seconds={3} repetitions={3} active={!this.state.showWelcomeScreen} onCountdown={() => { this.takePicture()}} onFinished={()=>{this.onFinished()}}></TimerComponent>
                 )}
             </View>
         );

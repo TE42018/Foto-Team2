@@ -6,9 +6,9 @@ import EndScreen from './Views/EndScreen';
 
 export default createStackNavigator(
   {
+    Camera: CamScreen,
     End: EndScreen,
     Start: StartSettingScreen,
     Settings: SettingsScreen,
-    Camera: CamScreen,
   },
 );

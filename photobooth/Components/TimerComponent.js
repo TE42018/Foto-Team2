@@ -6,26 +6,28 @@ export class TimerComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            seconds: this.props.seconds - 1,
+            seconds: this.props.seconds,
             repetitions: this.props.repetitions,
             finishedHandle: this.props.onFinished,
-            
+            countdownHandle: this.props.onCountdown
         }
     }
 
     countdown = () => {
-        if (this.state.seconds == 0) {
-            this.setState({ seconds: this.props.seconds })
-            if (this.state.repetitions > 0) {
-                this.setState({repetitions: this.state.repetitions - 1})
-                this.state.finishedHandle()
-            }
+        if (this.state.seconds == 1) {
+            this.setState({ seconds: this.props.seconds})
+            this.state.countdownHandle()
         }
+        else
         this.setState({ seconds: this.state.seconds - 1 })
     }
 
     componentDidMount() {
-        setInterval(this.countdown, 1000)
+        let countdowns = this.state.repetitions * this.state.seconds
+        for(let i = 1; i <= countdowns; i++){
+            setTimeout(this.countdown, 1000 * i)
+        }
+        setTimeout(this.props.onFinished, 1000 * (countdowns + 1))
     }
 
     componentWillUnmount() {
