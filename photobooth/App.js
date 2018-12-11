@@ -7,9 +7,9 @@ import DesignSettingScreen from './Views/DesignSettingScreen';
 
 export default createStackNavigator(
   {
+    Design: DesignSettingScreen,
     Camera: CamScreen,
     Start: StartSettingScreen,
-    Design: DesignSettingScreen,
     Settings: SettingsScreen,
     End: EndScreen,
   },
