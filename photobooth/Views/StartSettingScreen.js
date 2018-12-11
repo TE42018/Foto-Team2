@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ImageBackground, Picker} from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground, Picker, Button} from 'react-native';
 import SwitchSelector from 'react-native-switch-selector';
 import PhotoUpload from 'react-native-photo-upload'
 import { Icon, Container, Header, Left} from 'native-base'
-import { blue } from 'ansi-colors';
-
-const RaisedButton = props => <Button raised {...props} />;
+import EndScreen from './EndScreen';
 
 export default class StartSettingScreen extends Component{
     static navigationOptions = {
@@ -20,15 +18,25 @@ export default class StartSettingScreen extends Component{
       }
       
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
             <Container>
-            <Header>
-                <Left style={{marginLeft: "-38%"}}>
-                    <Icon name="ios-menu" onPress={() => this.props.navigation.openDrawer()}/>
-                    
-                </Left>
-            </Header>
+            <View style={{flexDirection: "row"}}>
+                {/* <View style={{flex: 1}}>
+                    <Button
+                        title="Back"
+                        onPress={() => navigate('End', {name: 'End'})}
+                    />
+                </View> */}
+                <View style={{flex: 1}}>
+                    <Button
+                        title="Next"
+                        onPress={() => navigate('Camera', {name: 'End'})}
+                    />
+                </View>
+            </View>
+
             <ImageBackground source={{uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1'}} style={styles.backgroundImage} >
                 <View style={{flex: 1, flexDirection: "row"}}>       
                     <View style={{width: "50%", height: "100%", flex: 1}}>
