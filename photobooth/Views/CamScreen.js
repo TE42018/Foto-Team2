@@ -13,38 +13,41 @@ function renderIf(condition, content) {
 }
 
 let cam;
-
+let temp;
 export default class CamScreen extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            showWelcomeScreen: true,
+            maxSeconds: 3,
+            seconds: 3,
+            imageCount: 4,
+            images: [],
+            test: []
+        }
     }
 
     static navigationOptions = {
         header: null,
     };
 
+
     takePicture = async function () {
         if (cam) {
             const options = { quality: 0.5, base64: true };
-            const data = await cam.takePictureAsync(options)
+            let data = await cam.takePictureAsync(options)
+            
             this.state.images.push(data.base64)
-            this.setState({ imageCount: this.state.imageCount - 1 }) 
-            //alert("Took picture")
         }
     }
 
     onFinished = () => {
         this.props.navigation.navigate('End', {images: this.state.images})
+        //alert(this.state.test)
         this.toggleWelcomeScreen()
     }
 
-    state = {
-        showWelcomeScreen: true,
-        maxSeconds: 3,
-        seconds: 3,
-        imageCount: 4,
-        images: []
-    }
 
 
     toggleWelcomeScreen = () => {
@@ -58,7 +61,7 @@ export default class CamScreen extends Component {
                 <RNCamera
                     ref={ref => cam = ref}
                     style={styles.preview}
-                    type={RNCamera.Constants.Type.front}
+                    type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.auto}
                     permissionDialogTitle={'Permission to use camera'}
                     permissionDialogMessage={'We need your permission to use your camera phone'}
@@ -74,7 +77,7 @@ export default class CamScreen extends Component {
                 )}
                 {renderIf(!this.state.showWelcomeScreen,
                 // seconds and repetition values sould not be hardcoded
-                    <TimerComponent seconds={3} repetitions={3} active={!this.state.showWelcomeScreen} onCountdown={() => { this.takePicture()}} onFinished={()=>{this.onFinished()}}></TimerComponent>
+                    <TimerComponent seconds={1} repetitions={2} active={!this.state.showWelcomeScreen} onCountdown={() => { this.takePicture()}} onFinished={()=>{this.onFinished()}}></TimerComponent>
                 )}
             </View>
         );
