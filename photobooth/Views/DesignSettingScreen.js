@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground, Text } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableNativeFeedback, TouchableWithoutFeedback, Slider } from 'react-native';
+import BatchedBridge from 'react-native/Libraries/BatchedBridge/BatchedBridge';
 
 export default class DesignSettingScreen extends Component {
     static navigationOptions = {
@@ -8,27 +9,171 @@ export default class DesignSettingScreen extends Component {
 
     render() {
         return (
-
             <View style={styles.container}>
-                <ImageBackground source={{ uri: 'https://i2.wp.com/www.vgdl2.org/wp-content/uploads/2016/04/Dark-Grey-Background-1024x893.png?ssl=1' }} style={styles.backgroundImage} ></ImageBackground>
-                <Text style={{ textAlign: 'left', fontSize: 40, color: "white", fontWeight: "bold", marginLeft: "8%", marginTop: "8%", position: 'absolute' }}>DESIGN</Text>
-                <View style={{ width: "50%", flexDirection: "row", alignItems: "center", paddingLeft: 73, paddingTop: 160, position: 'absolute' }}>
-                    <View style={{ paddingRight: "15%" }}>
-                        <Text style={{ fontSize: 35, color: 'rgb(229, 229, 229)' }}>GIF</Text>
-                    </View>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>DESIGN</Text>
                 </View>
-                <View style={{ width: "50%", flexDirection: "row", alignItems: "center", paddingLeft: 300, paddingTop: 160, position: 'absolute' }}>
-                    <View style={{ paddingRight: "15%" }}>
-                        <Text style={{ fontSize: 35, color: 'rgb(229, 229, 229)' }}>Layout</Text>
-                    </View>
-                </View>
+                <View style={styles.body}>
+                    <View style={settingsStyles.container}>
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>GIF</Text>
+                                </View>
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/GIF1.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/GIF2.png'))}
+                                </View>
+                            </View>
+                            <View style={styles.flex4}>
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Layout</Text>
+                                </View>
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/LAYOUT1.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/LAYOUT2.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/LAYOUT3.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/LAYOUT4.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/LAYOUT42.png'))}
+                                    {image(20, require('../Assets/Images/DesignScreen/LAYOUT32.png'))}
+                                </View>
+                            </View>
+                        </View>
 
-                <View style={{ width: "30%", flexDirection: "row", alignItems: "center", paddingLeft: 450, paddingTop: 160, position: 'absolute' }}>
-                    <View>
-                        <Text style={{ fontSize: 35, color: 'rgb(229, 229, 229)' }}>Preview</Text>
-                    </View>
-                </View>
 
+
+
+
+
+
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
+
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Effect</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+
+                                    <TouchableNativeFeedback >
+                                        <Text style={settingsStyles.button}>Evening</Text>
+                                    </TouchableNativeFeedback>
+                                </View>
+                            </View>
+
+                            <View style={styles.flex4}>
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Crop</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/CROP1.png'))}
+                                    {image(75, require('../Assets/Images/DesignScreen/CROP2.png'))}
+                                    {image(75, require('../Assets/Images/DesignScreen/CROP3.png'))}
+                                </View>
+                            </View>
+                        </View>
+
+
+
+
+
+
+
+                        <View>
+                            <View>
+                                <Text style={styles.bodyText}>Margins</Text>
+                                <Slider thumbStyle={{}}
+
+                                />
+                            </View>
+                        </View>
+                        <View>
+                            <View>
+                                <Text style={styles.bodyText}>Corners</Text>
+                                <Slider
+
+                                />
+                            </View>
+                        </View>
+
+
+
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
+
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Logo</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+
+                                    <TouchableNativeFeedback >
+                                        <Text style={settingsStyles.button}>Logo</Text>
+                                    </TouchableNativeFeedback>
+                                </View>
+                            </View>
+
+                            <View style={styles.flex4}>
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Logo Position</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/LOGOPOSITION1.png'))}
+                                    {image(75, require('../Assets/Images/DesignScreen/LOGOPOSITION2.png'))}
+                                    {image(75, require('../Assets/Images/DesignScreen/LOGOPOSITION3.png'))}
+                                </View>
+                            </View>
+                        </View>
+
+
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
+
+                            <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Overlay image</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/OVERLAY.png'))}
+                                </View>
+                            </View>
+                        </View>
+
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
+
+                            <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Margins Background</Text>
+                                </View>
+
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/MARGINS.png'))}
+                                </View>
+                            </View>
+                        </View>
+
+
+
+
+                    </View>
+
+
+
+
+
+
+
+                    <View style={styles.preview}>
+
+                    </View>
+
+
+
+
+
+                </View>
             </View>
 
 
@@ -36,12 +181,78 @@ export default class DesignSettingScreen extends Component {
     }
 }
 
+const image = (marginLeft, source) => {
+    const imgStyle = StyleSheet.create({
+        GIF: {
+            marginLeft: marginLeft,
+        }
+    });
+
+    return (
+        <TouchableWithoutFeedback>
+            <Image style={imgStyle.GIF} source={source}></Image>
+        </TouchableWithoutFeedback>
+    )
+
+}
+
+const settingsStyles = StyleSheet.create({
+    container: {
+        padding: 10,
+        flex: 4,
+    },
+    row: {
+        marginTop: 30,
+        flexDirection: 'row',
+        marginBottom: 10,
+    },
+    rowHeader: {
+        paddingBottom: 20,
+    },
+    rowImages: {
+        flexDirection: 'row',
+    },
+    button: {
+        padding: 20,
+        backgroundColor: '#1a1a1a',
+        color: '#fff',
+        flex: 1,
+        marginRight: 40,
+        textAlign: 'center',
+        fontSize: 20,
+    },
+});
+
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    backgroundImage: {
         flex: 1,
-        resizeMode: 'cover'
+        backgroundColor: '#202020',
+        padding: 20,
+    },
+    header: {
+        paddingTop: 20,
+    },
+    headerText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#e5e5e5',
+    },
+    body: {
+        flexDirection: 'row',
+        flex: 1,
+    },
+    bodyText: {
+        fontSize: 20,
+        color: '#e5e5e5',
+    },
+    preview: {
+        padding: 10,
+        flex: 2,
+    },
+    flex2: {
+        flex: 2,
+    },
+    flex4: {
+        flex: 4,
     },
 });
