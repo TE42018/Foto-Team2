@@ -42,10 +42,6 @@ export default class DesignSettingScreen extends Component {
 
 
 
-
-
-
-
                         <View style={settingsStyles.row}>
                             <View style={styles.flex2}>
 
@@ -73,10 +69,6 @@ export default class DesignSettingScreen extends Component {
                                 </View>
                             </View>
                         </View>
-
-
-
-
 
 
 
@@ -131,7 +123,7 @@ export default class DesignSettingScreen extends Component {
                         <View style={settingsStyles.row}>
                             <View style={styles.flex2}>
 
-                            <View style={settingsStyles.rowHeader}>
+                                <View style={settingsStyles.rowHeader}>
                                     <Text style={styles.bodyText}>Overlay image</Text>
                                 </View>
 
@@ -144,7 +136,7 @@ export default class DesignSettingScreen extends Component {
                         <View style={settingsStyles.row}>
                             <View style={styles.flex2}>
 
-                            <View style={settingsStyles.rowHeader}>
+                                <View style={settingsStyles.rowHeader}>
                                     <Text style={styles.bodyText}>Margins Background</Text>
                                 </View>
 
@@ -153,30 +145,26 @@ export default class DesignSettingScreen extends Component {
                                 </View>
                             </View>
                         </View>
-
-
-
-
                     </View>
 
 
+                    
+                        <View style={styles.preview}>
+                        <View style={settingsStyles.row}>
+                            <View style={styles.flex2}>
 
+                                <View style={settingsStyles.rowHeader}>
+                                    <Text style={styles.bodyText}>Preview</Text>
+                                </View>
 
-
-
-
-                    <View style={styles.preview}>
-
-                    </View>
-
-
-
-
-
+                                <View style={settingsStyles.rowImages}>
+                                    {image(0, require('../Assets/Images/DesignScreen/YAAAS.png'))}
+                                </View>
+                            </View>
+                        </View>
+                        </View>
                 </View>
             </View>
-
-
         );
     }
 }
