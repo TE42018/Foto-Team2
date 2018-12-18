@@ -75,17 +75,17 @@ export default class DesignSettingScreen extends Component {
                         <View>
                             <View>
                                 <Text style={styles.bodyText}>Margins</Text>
-                                <Slider thumbStyle={{}}
+                                <Slider minimumTrackTintColor='#fefefe'>
 
-                                />
+                                </Slider>
                             </View>
                         </View>
                         <View>
                             <View>
                                 <Text style={styles.bodyText}>Corners</Text>
-                                <Slider
+                                <Slider  minimumTrackTintColor='#fefefe'>
 
-                                />
+                                </Slider>
                             </View>
                         </View>
 
@@ -128,7 +128,7 @@ export default class DesignSettingScreen extends Component {
                                 </View>
 
                                 <View style={settingsStyles.rowImages}>
-                                    {image(0, require('../Assets/Images/DesignScreen/OVERLAY.png'))}
+                                    {image(0, require('../Assets/Images/DesignScreen/UPLOAD.png'))}
                                 </View>
                             </View>
                         </View>
@@ -141,15 +141,15 @@ export default class DesignSettingScreen extends Component {
                                 </View>
 
                                 <View style={settingsStyles.rowImages}>
-                                    {image(0, require('../Assets/Images/DesignScreen/MARGINS.png'))}
+                                    {image(0, require('../Assets/Images/DesignScreen/UPLOAD.png'))}
                                 </View>
                             </View>
                         </View>
                     </View>
 
 
-                    
-                        <View style={styles.preview}>
+
+                    <View style={styles.preview}>
                         <View style={settingsStyles.row}>
                             <View style={styles.flex2}>
 
@@ -158,11 +158,11 @@ export default class DesignSettingScreen extends Component {
                                 </View>
 
                                 <View style={settingsStyles.rowImages}>
-                                    {image(0, require('../Assets/Images/DesignScreen/YAAAS.png'))}
+                                    {image(0, require('../Assets/Images/DesignScreen/PREVIEW.png'))}
                                 </View>
                             </View>
                         </View>
-                        </View>
+                    </View>
                 </View>
             </View>
         );
